@@ -1,0 +1,18 @@
+[
+  {
+    "key": "logs/app.log",
+    "created": "2026-01-01",
+    "storage_class": "standard"
+  },
+  {
+    "key": "legal/document.txt",
+    "created": "2026-01-01",
+    "storage_class": "standard",
+    "legal_hold": true
+  },
+  {
+    "key": "reports/monthly.csv",
+    "created": "2026-09-01",
+    "storage_class": "standard"
+  }
+]

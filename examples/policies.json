@@ -1,0 +1,15 @@
+[
+  {
+    "prefix": "logs/",
+    "expire_after_days": 90
+  },
+  {
+    "prefix": "legal/",
+    "expire_after_days": 90
+  },
+  {
+    "prefix": "reports/",
+    "transition_after_days": 30,
+    "storage_class": "archive"
+  }
+]

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "object-lifecycle-simulator"
+version = "1.0.0"
+description = "Deterministic retention plans with legal holds and policy precedence"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+object-lifecycle-simulator = "object_lifecycle_simulator:entrypoint"
+
+[tool.setuptools.packages.find]
+include = ["object_lifecycle_simulator*"]
