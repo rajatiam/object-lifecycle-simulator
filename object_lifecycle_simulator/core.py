@@ -116,3 +116,46 @@ def write_plan(path, result):
         os.replace(temporary, path)
     finally:
         temporary.unlink(missing_ok=True)
+
+
+def compare(before, after):
+    def mapping(document):
+        if (
+            not isinstance(document, dict)
+            or document.get("dry_run") is not True
+            or not isinstance(document.get("objects"), list)
+        ):
+            raise ValueError("Expected a lifecycle dry-run plan")
+        result = {}
+        for row in document["objects"]:
+            if (
+                not isinstance(row, dict)
+                or not isinstance(row.get("key"), str)
+                or row["key"] in result
+                or row.get("action") not in ["keep", "transition", "delete"]
+            ):
+                raise ValueError("Invalid or duplicate plan entry")
+            if (
+                row["action"] == "transition"
+                and row.get("storage_class") not in CLASSES
+            ):
+                raise ValueError("Invalid target storage class")
+            result[row["key"]] = {
+                "action": row["action"],
+                "storage_class": (
+                    row.get("storage_class") if row["action"] == "transition" else None
+                ),
+            }
+        return result
+
+    old, new = mapping(before), mapping(after)
+    return {
+        "added": sorted(new.keys() - old.keys()),
+        "removed": sorted(old.keys() - new.keys()),
+        "changed": [
+            {"key": key, "before": old[key], "after": new[key]}
+            for key in sorted(old.keys() & new.keys())
+            if old[key] != new[key]
+        ],
+        "dry_run": True,
+    }

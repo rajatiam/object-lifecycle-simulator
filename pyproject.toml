@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "object-lifecycle-simulator"
-version = "1.0.0"
+version = "1.1.0"
 description = "Deterministic retention plans with legal holds and policy precedence"
 requires-python = ">=3.11"
 dependencies = []

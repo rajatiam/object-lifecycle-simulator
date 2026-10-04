@@ -1,0 +1,33 @@
+{
+  "as_of": "2026-10-03",
+  "dry_run": true,
+  "objects": [
+    {
+      "key": "legal/document.txt",
+      "action": "keep",
+      "reason": "Deletion blocked by legal hold or retention",
+      "age_days": 275,
+      "policy_prefix": "legal/"
+    },
+    {
+      "key": "logs/app.log",
+      "action": "delete",
+      "reason": "Expiration threshold reached",
+      "age_days": 275,
+      "policy_prefix": "logs/"
+    },
+    {
+      "key": "reports/monthly.csv",
+      "action": "transition",
+      "reason": "Transition threshold reached",
+      "age_days": 32,
+      "policy_prefix": "reports/",
+      "storage_class": "archive"
+    }
+  ],
+  "summary": {
+    "keep": 1,
+    "transition": 1,
+    "delete": 1
+  }
+}

@@ -36,3 +36,13 @@ Business algorithms live in `object_lifecycle_simulator/core.py`; `object_lifecy
 Plans only: it never deletes objects or connects to a cloud account. Legal holds and future retain-until dates block deletion. Longest matching prefix determines policy; ambiguous duplicate prefixes are rejected.
 
 This project demonstrates implemented engineering practices. It does not claim production deployment history or external certifications.
+
+## Lifecycle plan comparison
+
+Compare two dry-run plans and identify changed lifecycle actions or target storage classes. Comparison does not perform any deletion or cloud operation.
+
+```sh
+python -m object_lifecycle_simulator compare examples/plan-before.json examples/plan-after.json
+```
+
+Create the named input snapshots, databases or plan files first using the existing commands above.
